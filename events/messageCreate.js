@@ -5,7 +5,7 @@ export default class {
 
         const args = message.content.slice(1).trim().split(/ +/);
         const commandName = args.shift().toLocaleLowerCase();
-        const command = message.client.commands.get(commandName);
+        const command = message.client.commands.get(commandName) || message.client.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
         if (!command) return;
         
         try {
